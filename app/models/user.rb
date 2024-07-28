@@ -9,6 +9,14 @@ class User < ApplicationRecord
   # スコープ
   # フック
   # バリデーション
+  validates :name,  presence: true,
+                    uniqueness: { case_sensitive: false },
+                    length: { maximum: 255 }
+                    # format: { with: ConstantData::VALID_EMAIL_REGEX }
+  validates :email, presence: true,
+                    uniqueness: { case_sensitive: false },
+                    length: { maximum: 255 },
+                    format: { with: URI::MailTo::EMAIL_REGEXP }
   # クラス変数
   # クラスメソッド
   # クラスメソッド(private)
