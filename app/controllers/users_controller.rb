@@ -13,8 +13,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(permit_params)
-    @user.save
-    redirect_to @user, notice: 'ユーザが作成されました。'
+    if @user.save
+      redirect_to @user, notice: 'ユーザが作成されました。'
+    else
+      flash.now[:alert] = 'ユーザーの作成に失敗しました。'
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
@@ -23,14 +27,21 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(permit_params)
-    redirect_to @user, notice: 'ユーザが更新されました。'
+    if @user.update(permit_params)
+      redirect_to @user, notice: 'ユーザが更新されました。'
+    else
+      flash.now[:alert] = 'ユーザーの更新に失敗しました。'
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
     @user = User.find(params[:id])
-    @user.destroy
-    redirect_to users_path, notice: 'ユーザが削除されました。'
+    if @user.destroy
+      redirect_to users_path, notice: 'ユーザが削除されました。'
+    else
+      redirect_to users_path, alert: 'ユーザーの削除に失敗しました。'
+    end
   end
 
   private

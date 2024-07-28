@@ -1,3 +1,7 @@
+<% if flash[:alert] %>
+  <p><%= flash[:alert] %></p>
+<% end %>
+
 <h1>ユーザ 編集</h1>
 <%= form_with model: @user do |f| %>
   <div>
