@@ -1,7 +1,4 @@
-<% if flash[:notice] %>
-  <p><%= flash[:notice] %></p>
-<% end %>
-
+<%= render 'success'  %>
 <h1>ユーザ 一覧</h1>
 <%= link_to('新規作成', new_user_path) %>
 

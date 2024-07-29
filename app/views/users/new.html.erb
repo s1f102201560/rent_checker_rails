@@ -1,19 +1,4 @@
-<% if flash[:alert] %>
-  <p><%= flash[:alert] %></p>
-<% end %>
+<%= render 'error' %>
 
 <h1>ユーザ 新規登録</h1>
-<%= form_with model: @user do |f| %>
-  <div>
-    <%= f.label :名前 %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div>
-    <%= f.label :Eメール %><br />
-    <%= f.text_field :email %>
-  </div>
-
-  <div>
-    <%= f.submit %>
-  </div>
-<% end %>
+<%= render 'form' %>
