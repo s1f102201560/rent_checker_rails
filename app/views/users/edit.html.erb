@@ -1,4 +1,4 @@
 <%= render 'error'  %>
 
-<h1>ユーザ 編集</h1>
+<h1><%= t 'users.edit.title', user_name: @user.name %></h1>
 <%= render 'form' %>

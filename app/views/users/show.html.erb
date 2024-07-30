@@ -1,7 +1,7 @@
 <%= render 'success'  %>
 <%= render 'error'  %>
 
-<h1><%= @user.name %>さん</h1>
+<h1><%= t 'users.show.title', user_name: @user.name  %></h1>
 <p>
   名前: <%= @user.name %>
   Eメール: <%= @user.email %>

@@ -1,11 +1,11 @@
 <%= render 'success'  %>
-<h1>ユーザ 一覧</h1>
+<h1><%= t 'users.index.title' %></h1>
 <%= link_to('新規作成', new_user_path) %>
 
 <% @users.each do |user| %>
   <p>
-    名前: <%= user.name %>
-    Eメール: <%= user.email %>
+    <%= t 'activerecord.attributes.user.name' %>: <%= user.name %>
+    <%= t 'activerecord.attributes.user.email' %>: <%= user.email %>
     <%= link_to('詳細', user_path(user.id)) %>
   </p>
 <% end %>
