@@ -14,10 +14,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(permit_params)
     if @user.save
-      redirect_to @user, notice: 'ユーザが作成されました。'
+      redirect_to @user, notice: t('messages.create.notice')
     else
-      flash.now[:alert] = 'ユーザーの作成に失敗しました。'
-      render :new, status: :unprocessable_entity
+      render :new, alert: t('messages.create.alert'), status: :unprocessable_entity
     end
   end
 
@@ -28,19 +27,18 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(permit_params)
-      redirect_to @user, notice: 'ユーザが更新されました。'
+      redirect_to @user, notice: t('messages.update.notice')
     else
-      flash.now[:alert] = 'ユーザーの更新に失敗しました。'
-      render :edit, status: :unprocessable_entity
+      render :edit, alert: t('messages.update.alert'), status: :unprocessable_entity
     end
   end
 
   def destroy
     @user = User.find(params[:id])
     if @user.destroy
-      redirect_to users_path, notice: 'ユーザが削除されました。'
+      redirect_to users_path, notice: t('messages.destroy.notice')
     else
-      redirect_to users_path, alert: 'ユーザーの削除に失敗しました。'
+      redirect_to users_path, alert: t('messages.destroy.alert')
     end
   end
 
